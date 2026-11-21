@@ -1,0 +1,59 @@
+<svg width="1280" height="340" viewBox="0 0 1280 340" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GyanVault banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070D1A"/>
+      <stop offset="0.55" stop-color="#0B1120"/>
+      <stop offset="1" stop-color="#101A2E"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="300" y1="0" x2="900" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="0.55" stop-color="#67E8F9"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#FCD34D"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1020 90) rotate(140) scale(430 300)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06B6D4" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#06B6D4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientTransform="translate(260 300) rotate(-30) scale(360 220)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="#38BDF8" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="340" fill="url(#bg)"/>
+  <rect width="1280" height="340" fill="url(#grid)"/>
+  <rect width="1280" height="340" fill="url(#glow)"/>
+  <rect width="1280" height="340" fill="url(#glow2)"/>
+  <rect x="1" y="1" width="1278" height="338" rx="18" stroke="#06B6D4" stroke-opacity="0.28"/>
+
+  <!-- vault emblem -->
+  <g transform="translate(70 92)">
+    <rect x="0" y="0" width="156" height="156" rx="38" fill="#0F172A" stroke="#06B6D4" stroke-width="3"/>
+    <rect x="10" y="10" width="136" height="136" rx="30" fill="#06B6D4" opacity="0.12"/>
+    <path d="M38 56L78 38L118 56V108L78 126L38 108V56Z" stroke="#38BDF8" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 64L78 52L106 64" stroke="#38BDF8" stroke-width="2.6" opacity="0.8"/>
+    <line x1="78" y1="38" x2="78" y2="126" stroke="#F59E0B" stroke-width="4"/>
+    <circle cx="78" cy="82" r="6" fill="#F59E0B"/>
+  </g>
+
+  <!-- headline -->
+  <text x="272" y="150" fill="#67E8F9" font-family="Inter, Segoe UI, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="6">CURATED EDUCATIONAL RESOURCE HUB</text>
+  <text x="268" y="232" fill="url(#cyan)" font-family="Inter, Segoe UI, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-2">Gyan<tspan fill="#06B6D4">Vault</tspan></text>
+  <text x="272" y="274" fill="#94A3B8" font-family="Inter, Segoe UI, Helvetica, sans-serif" font-size="22">Search, Filter &amp; Master Curated Notes, Code, eBooks &amp; Video Lectures.</text>
+  <text x="272" y="308" fill="url(#amber)" font-family="Inter, Segoe UI, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="1.5">BY RAJ GAUTAM  ·  CTRL + K TO SEARCH EVERYTHING</text>
+
+  <!-- corner marks -->
+  <g stroke="#06B6D4" stroke-opacity="0.5" stroke-width="2">
+    <path d="M1110 40H1240V170"/>
+    <path d="M40 300V170H170"/>
+  </g>
+  <text x="1120" y="70" fill="#06B6D4" font-family="monospace" font-size="16">GV://LIBRARY</text>
+  <text x="1120" y="96" fill="#475569" font-family="monospace" font-size="14">indexed · searchable · free</text>
+</svg>

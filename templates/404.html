@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}404 — GyanVault{% endblock %}
+
+{% block content %}
+<section class="page-head page-head--center">
+  <span class="section-kicker">// SIGNAL LOST</span>
+  <h1 class="page-title"><span class="gradient-text">{{ '500' if server_error else '404' }}</span></h1>
+  <p class="page-lede">{% if server_error %}Something broke in the vault. Try again in a moment.{% else %}This resource is not indexed in the vault.{% endif %}</p>
+  <a class="btn btn--primary" href="{{ url_for('library.home') }}">Return to the library ↗</a>
+</section>
+{% endblock %}

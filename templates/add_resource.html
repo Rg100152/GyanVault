@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Publish a Resource — GyanVault{% endblock %}
+
+{% block content %}
+
+<section class="page-head">
+  <span class="section-kicker">// ADMIN CONSOLE</span>
+  <h1 class="page-title">Publish to the <span class="gradient-text">vault</span>.</h1>
+  <p class="page-lede">Add a new study resource. It will appear instantly in search, filters and the bento grid.</p>
+</section>
+
+<div class="publish-layout">
+  <form class="form-card" method="post" action="{{ url_for('library.add_resource') }}">
+    <div class="form-card__head"><span class="form-card__step">01</span><div><h2>Resource details</h2><p>Everything the learner sees on the card.</p></div></div>
+
+    <label class="field">
+      <span>Title <b>*</b></span>
+      <input name="title" required maxlength="160" placeholder="e.g. Python Crash Course — Beginner Notes">
+    </label>
+
+    <div class="field-row">
+      <label class="field">
+        <span>Category <b>*</b></span>
+        <input name="category" required list="categoryOptions" placeholder="Python">
+        <datalist id="categoryOptions">
+          {% for category in categories %}<option value="{{ category['name'] }}">{% endfor %}
+        </datalist>
+      </label>
+      <label class="field">
+        <span>Format <b>*</b></span>
+        <select name="format" required>
+          {% for fmt in formats %}<option value="{{ fmt }}">{{ fmt }}</option>{% endfor %}
+        </select>
+      </label>
+    </div>
+
+    <label class="field">
+      <span>Short description</span>
+      <textarea name="description" rows="3" maxlength="400" placeholder="One or two lines that explain why this resource is worth opening."></textarea>
+    </label>
+
+    <label class="field">
+      <span>Stock image URL</span>
+      <input name="image_url" type="url" placeholder="https://images.unsplash.com/photo-…">
+      <small>Direct Unsplash image links work best. Leave blank for the default cover.</small>
+    </label>
+
+    <label class="field">
+      <span>Resource URL <b>*</b></span>
+      <input name="resource_url" type="url" required placeholder="https://docs.python.org/3/tutorial/">
+    </label>
+
+    <div class="field-row">
+      <label class="field">
+        <span>Difficulty</span>
+        <select name="difficulty">
+          {% for level in difficulties %}<option value="{{ level }}">{{ level }}</option>{% endfor %}
+        </select>
+      </label>
+      <label class="field">
+        <span>Tags</span>
+        <input name="tags" placeholder="python, basics, pdf">
+        <small>Comma separated — used by instant search.</small>
+      </label>
+    </div>
+
+    <button class="btn btn--primary btn--block" type="submit">Publish resource <span>↗</span></button>
+  </form>
+
+  <aside class="publish-aside">
+    <div class="aside-card">
+      <span class="bento-label">EDITORIAL NOTE</span>
+      <h3>Curate with intent.</h3>
+      <p>GyanVault is a library, not a link dump. Prefer authoritative docs, clean screenshots and descriptions that tell a learner what they will actually gain.</p>
+      <div class="aside-card__rule"></div>
+      <p class="aside-card__sign">Curated by <strong>Raj Gautam</strong></p>
+    </div>
+    <div class="aside-card aside-card--checklist">
+      <span class="bento-label">QUICK CHECKLIST</span>
+      <ul>
+        <li>✓ Title is specific and searchable</li>
+        <li>✓ Cover image has a 16:9 crop</li>
+        <li>✓ Link opens without a login wall</li>
+        <li>✓ Tags match real learner queries</li>
+      </ul>
+    </div>
+    <a class="btn btn--ghost btn--block" href="{{ url_for('library.home') }}">← Back to the library</a>
+  </aside>
+</div>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}GyanVault — {{ stats['total'] }} Curated Study Resources{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="hero__eyebrow"><span class="pulse-dot"></span> Curated by Raj Gautam · 2026 Edition</div>
+  <h1 class="hero__title">Every Study Resource,<br><span class="gradient-text">Indexed &amp; Searchable.</span></h1>
+  <p class="hero__lede">Search, Filter &amp; Master Curated Notes, Code, eBooks &amp; Video Lectures.</p>
+
+  <div class="searchbox">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" autocomplete="off" spellcheck="false"
+           placeholder="Search Python, Cyber Security, Algorithms, PDFs…"
+           aria-label="Search resources">
+    <button class="searchbox__clear" id="searchClear" type="button" aria-label="Clear search" hidden>×</button>
+    <button class="searchbox__shortcut" id="searchShortcut" type="button" aria-label="Open command palette"><kbd>Ctrl</kbd><kbd>K</kbd></button>
+  </div>
+
+  <div class="chips" id="formatChips" aria-label="Filter by format">
+    <button class="chip is-active" type="button" data-format="">All <span>{{ stats['total'] }}</span></button>
+    {% for fmt in formats %}
+      <button class="chip" type="button" data-format="{{ fmt }}">{{ fmt }} <span>{{ format_counts.get(fmt, 0) }}</span></button>
+    {% endfor %}
+  </div>
+
+  <div class="subjects" id="categoryChips" aria-label="Filter by subject">
+    <button class="subject-chip is-active" type="button" data-category="">All subjects</button>
+    {% for category in categories %}
+      <button class="subject-chip" type="button" data-category="{{ category['name'] }}">{{ category['name'] }}</button>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="bento" aria-label="Vault statistics">
+  <article class="bento-card bento-card--feature">
+    <div class="bento-card__top"><span class="bento-icon">◆</span><span class="bento-label">THE VAULT</span></div>
+    <div class="bento-card__value" id="statTotal">{{ stats['total'] }}</div>
+    <div class="bento-card__caption">hand-picked resources, one shortcut away</div>
+    <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </article>
+  <article class="bento-card">
+    <div class="bento-card__top"><span class="bento-icon bento-icon--amber">◈</span><span class="bento-label">SUBJECTS</span></div>
+    <div class="bento-card__value">{{ category_count }}</div>
+    <div class="bento-card__caption">distinct learning tracks indexed</div>
+  </article>
+  <article class="bento-card">
+    <div class="bento-card__top"><span class="bento-icon">↗</span><span class="bento-label">TOTAL VIEWS</span></div>
+    <div class="bento-card__value" id="statViews">{{ '{:,}'.format(stats['views']) }}</div>
+    <div class="bento-card__caption">explorations by curious learners</div>
+  </article>
+  <article class="bento-card">
+    <div class="bento-card__top"><span class="bento-icon bento-icon--amber">↓</span><span class="bento-label">DOWNLOADS</span></div>
+    <div class="bento-card__value" id="statDownloads">{{ '{:,}'.format(stats['downloads']) }}</div>
+    <div class="bento-card__caption">resources saved for offline study</div>
+  </article>
+</section>
+
+<section class="library">
+  <div class="section-head">
+    <div>
+      <span class="section-kicker">// THE LIBRARY</span>
+      <h2 class="section-title">{% if saved_only %}Your saved vault{% else %}Explore the collection{% endif %}</h2>
+    </div>
+    <div class="section-tools">
+      <div class="difficulty-filter" id="difficultyFilter" aria-label="Filter by difficulty">
+        <button class="mini-chip is-active" type="button" data-difficulty="">Any level</button>
+        <button class="mini-chip" type="button" data-difficulty="Beginner">Beginner</button>
+        <button class="mini-chip" type="button" data-difficulty="Intermediate">Intermediate</button>
+        <button class="mini-chip" type="button" data-difficulty="Advanced">Advanced</button>
+      </div>
+      <label class="sort-select">
+        <span class="sr-only">Sort resources</span>
+        <select id="sortSelect">
+          <option value="latest">Latest first</option>
+          <option value="popular">Most downloaded</option>
+          <option value="viewed">Most viewed</option>
+          <option value="title">Title A–Z</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <div class="results-meta"><span id="resultCount">Loading the vault…</span><span class="results-meta__hint">Click a card for instant preview</span></div>
+
+  <div class="grid" id="resourceGrid" aria-live="polite"></div>
+
+  <div class="skeletons" id="skeletons" aria-hidden="true">
+    {% for i in range(8) %}<div class="skeleton-card"><div class="skeleton-card__img"></div><div class="skeleton-card__line"></div><div class="skeleton-card__line skeleton-card__line--short"></div></div>{% endfor %}
+  </div>
+
+  <div class="empty" id="emptyState" hidden>
+    <span class="empty__icon">⌕</span>
+    <h3>No matching resources</h3>
+    <p>Try a different keyword or clear the active filters.</p>
+    <button class="btn btn--ghost" id="resetFilters" type="button">Reset all filters</button>
+  </div>
+</section>
+
+{% endblock %}
